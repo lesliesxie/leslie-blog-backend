@@ -3,7 +3,7 @@
  * @Author: leslie
  * @Date: 2024-01-26 19:10:40
  * @LastEditors: leslie
- * @LastEditTime: 2024-02-11 19:18:39
+ * @LastEditTime: 2024-02-12 20:43:04
  * 佛祖保佑没bug
  */
 import { Module } from '@nestjs/common';
@@ -17,7 +17,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       username: 'root',
       password: '072745h.',
       database: 'leslie',
-      // entities: [],
       autoLoadEntities: true,
       synchronize: true,
     }),
