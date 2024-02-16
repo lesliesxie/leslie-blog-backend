@@ -3,7 +3,7 @@
  * @Author: leslie
  * @Date: 2024-02-11 18:47:25
  * @LastEditors: leslie
- * @LastEditTime: 2024-02-11 18:57:39
+ * @LastEditTime: 2024-02-16 21:21:36
  * 佛祖保佑没bug
  */
 import { Injectable } from '@nestjs/common';
@@ -17,9 +17,19 @@ export class ClassificationService {
     @InjectRepository(Classification)
     private classificationRepository: Repository<Classification>,
   ) {}
+
   async findAll(): Promise<Classification[]> {
     return await this.classificationRepository.find();
   }
+
+  async getClassificationByContentListId(
+    contentListId: number,
+  ): Promise<Classification[]> {
+    return await this.classificationRepository.find({
+      where: { contentList: { id: contentListId } },
+    });
+  }
+
   async create(name: string): Promise<Classification> {
     const item = new Classification();
     item.name = name;
