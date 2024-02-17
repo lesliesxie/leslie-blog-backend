@@ -3,7 +3,7 @@
  * @Author: leslie
  * @Date: 2024-02-16 16:43:01
  * @LastEditors: leslie
- * @LastEditTime: 2024-02-16 20:47:41
+ * @LastEditTime: 2024-02-17 15:53:48
  * 佛祖保佑没bug
  */
 
@@ -25,18 +25,10 @@ export class ContentListService {
     const contentList = await this.contentListRepository.find();
     const contentListWithClassification: ContentList[] = [];
     for (const list of contentList) {
-      console.log(
-        await this.classificationService.getClassificationByContentListId(
-          list.id,
-        ),
-      );
-
       const classification =
         await this.classificationService.getClassificationByContentListId(
           list.id,
         );
-      console.log('classification', classification);
-
       contentListWithClassification.push({ ...list, classification });
     }
     return contentListWithClassification;
