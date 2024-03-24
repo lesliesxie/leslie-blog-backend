@@ -1,11 +1,12 @@
 /*
  * @Description: Stay hungry，Stay foolish
  * @Author: leslie
- * @Date: 2024-02-11 18:47:00
+ * @Date: 2024-03-24 17:39:05
  * @LastEditors: leslie
- * @LastEditTime: 2024-03-24 18:27:12
+ * @LastEditTime: 2024-03-24 18:27:54
  * 佛祖保佑没bug
  */
+
 import { ContentList } from 'src/contentList/contentList.entity';
 import {
   Column,
@@ -16,7 +17,7 @@ import {
 } from 'typeorm';
 
 @Entity()
-export class Classification {
+export class LabelList {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -26,7 +27,7 @@ export class Classification {
   @Column()
   text: string;
 
-  @ManyToMany(() => ContentList, (contentList) => contentList.classification)
+  @ManyToMany(() => ContentList, (contentList) => contentList.label)
   @JoinTable()
   contentList: ContentList[];
 }

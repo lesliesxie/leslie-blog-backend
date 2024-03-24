@@ -3,7 +3,7 @@
  * @Author: leslie
  * @Date: 2024-02-11 18:47:25
  * @LastEditors: leslie
- * @LastEditTime: 2024-02-16 21:21:36
+ * @LastEditTime: 2024-03-24 20:52:41
  * 佛祖保佑没bug
  */
 import { Injectable } from '@nestjs/common';
@@ -30,9 +30,17 @@ export class ClassificationService {
     });
   }
 
+  async getOrCreateClassification(
+    classificationId: number,
+  ): Promise<Classification[]> {
+    return await this.classificationRepository.find({
+      where: { id: classificationId },
+    });
+  }
+
   async create(name: string): Promise<Classification> {
     const item = new Classification();
-    item.name = name;
+    item.value = name;
     return await this.classificationRepository.save(item);
   }
 }

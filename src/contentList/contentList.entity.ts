@@ -3,14 +3,14 @@
  * @Author: leslie
  * @Date: 2024-02-16 16:42:59
  * @LastEditors: leslie
- * @LastEditTime: 2024-02-16 19:59:18
+ * @LastEditTime: 2024-03-24 17:54:24
  * 佛祖保佑没bug
  */
 import { Classification } from 'src/classification/classification.entity';
+import { LabelList } from 'src/labelList/labelList.entity';
 import {
   Column,
   Entity,
-  JoinColumn,
   JoinTable,
   ManyToMany,
   PrimaryGeneratedColumn,
@@ -35,6 +35,13 @@ export class ContentList {
 
   @Column()
   browse: number;
+
+  @ManyToMany(() => LabelList)
+  @JoinTable()
+  label: LabelList[];
+
+  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  createTime: Date;
 
   @Column('simple-array', { nullable: true })
   imgList: string[];
