@@ -3,7 +3,7 @@
  * @Author: leslie
  * @Date: 2024-02-16 16:43:01
  * @LastEditors: leslie
- * @LastEditTime: 2024-03-24 21:00:06
+ * @LastEditTime: 2024-03-25 22:12:06
  * 佛祖保佑没bug
  */
 
@@ -64,12 +64,12 @@ export class ContentListService {
     // TODO:contentList插入数据时更新两张关联表
     const savedContent = await this.contentListRepository.save(content);
 
-    for (const label of labelList) {
-      label.contentList.push(savedContent);
-      await this.labelListService.saveLabelList(label);
-    }
-    classification.contentList.push(savedContent);
-    await this.classificationService.saveClassification(classification);
+    // for (const label of labelList) {
+    //   label.contentList.push(savedContent);
+    //   await this.labelListService.saveLabelList(label);
+    // }
+    // classification.contentList.push(savedContent);
+    // await this.classificationService.saveClassification(classification);
 
     return savedContent;
   }

@@ -3,7 +3,7 @@
  * @Author: leslie
  * @Date: 2024-02-16 16:42:59
  * @LastEditors: leslie
- * @LastEditTime: 2024-03-24 17:54:24
+ * @LastEditTime: 2024-03-25 22:11:36
  * 佛祖保佑没bug
  */
 import { Classification } from 'src/classification/classification.entity';
@@ -37,7 +37,6 @@ export class ContentList {
   browse: number;
 
   @ManyToMany(() => LabelList)
-  @JoinTable()
   label: LabelList[];
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
@@ -47,6 +46,5 @@ export class ContentList {
   imgList: string[];
 
   @ManyToMany(() => Classification)
-  @JoinTable()
   classification: Classification[];
 }
