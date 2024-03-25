@@ -3,18 +3,12 @@
  * @Author: leslie
  * @Date: 2024-02-16 16:42:59
  * @LastEditors: leslie
- * @LastEditTime: 2024-03-25 22:11:36
+ * @LastEditTime: 2024-03-25 22:51:22
  * 佛祖保佑没bug
  */
 import { Classification } from 'src/classification/classification.entity';
 import { LabelList } from 'src/labelList/labelList.entity';
-import {
-  Column,
-  Entity,
-  JoinTable,
-  ManyToMany,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
+import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class ContentList {

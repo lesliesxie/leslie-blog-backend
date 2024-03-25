@@ -3,7 +3,7 @@
  * @Author: leslie
  * @Date: 2024-02-16 16:43:01
  * @LastEditors: leslie
- * @LastEditTime: 2024-03-25 22:12:06
+ * @LastEditTime: 2024-03-25 23:01:29
  * 佛祖保佑没bug
  */
 
@@ -13,7 +13,6 @@ import { ContentList } from './contentList.entity';
 import { Repository } from 'typeorm';
 import { ClassificationService } from 'src/classification/classification.service';
 import { LabelListService } from 'src/labelList/labelList.service';
-import { CreateContentDto } from './dto/create-content.dto';
 
 @Injectable()
 export class ContentListService {
@@ -59,17 +58,12 @@ export class ContentListService {
         ),
       );
     }
-    content.label = labelList;
-    content.classification = classification;
-    // TODO:contentList插入数据时更新两张关联表
     const savedContent = await this.contentListRepository.save(content);
-
-    // for (const label of labelList) {
-    //   label.contentList.push(savedContent);
-    //   await this.labelListService.saveLabelList(label);
-    // }
-    // classification.contentList.push(savedContent);
-    // await this.classificationService.saveClassification(classification);
+    await this.labelListService.updateLabelListContentList(content, labelList);
+    await this.classificationService.updateClassificationContentList(
+      content,
+      classification,
+    );
 
     return savedContent;
   }
